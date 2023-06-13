@@ -27,7 +27,7 @@ class Map:
         self.new_map = True
         self.rects = []
         self.rect_width = 10
-        self.total_rects = width//self.rect_width
+        self.total_rects = (width//self.rect_width) +2
         self.spacer = 10
         self.map_speed = 2
         self.width = width
@@ -58,7 +58,7 @@ class Map:
         for i in range(len(self.rects)):
             self.rects[i].move_ip(-self.map_speed, 0)
             if self.rects[i].right < 0:
-                self.rects.pop(0)
+                self.rects.pop(1)
                 self.rects.pop(0)
                 top_height = random.randint(self.rects[-2].height - self.spacer, self.rects[-2].height + self.spacer)
                 if top_height < 0:
