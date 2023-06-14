@@ -28,6 +28,7 @@ map_speed = 2
 score = 0
 high_score = 0
 active = True
+heli = py.transform.scale(py.image.load('heli2.png'), (60,60))
 
 
 
@@ -55,7 +56,8 @@ def draw_map(rects):
     py.draw.rect(screen, 'dark gray', [0,0,  WIDTH, HEIGHT], 12)
 
 def draw_player():
-    player = py.draw.circle(screen, 'white', (player_x, player_y), 20)
+    # player = py.draw.circle(screen, 'white', (player_x, player_y), 20)
+    player = screen.blit(heli, (player_x - 40, player_y - 30))
 
     return player
 
@@ -126,7 +128,8 @@ while run:
             if event.key == py.K_SPACE:
                 flying = False
     #score increases difficulty
-    map_speed = 2 + score//50  
+    map_speed = 2 + score//50
+    spacer = 10 + score//100  
 
     screen.blit(font.render(f'Score: {score}', True, 'black'), (20, 15))
     screen.blit(font.render(f'High Score: {score}', True, 'black'), (20, 565))
